@@ -1,5 +1,6 @@
 package com.keny.api.resource;
 
+import org.hamcrest.Matchers;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -56,8 +57,9 @@ public class TransportadoraResourceTest extends BaseTest {
 					.when()
 						.get("/transportadoras/1")
 					.then()
-						.assertThat().statusCode(200)
 						.log().body()
+						.assertThat().statusCode(200)
+						.body("cnpj", Matchers.is("33200056000149"))
 					;		
 		
 	}

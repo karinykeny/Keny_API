@@ -6,4 +6,6 @@ public interface TransportadoraService {
 	
 	Transportadora seve(Transportadora transportadora);
 
+	Transportadora findById(Integer id);
+
 }
