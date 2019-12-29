@@ -1,5 +1,7 @@
 package com.keny.api.resource;
 
+import static org.junit.Assert.*;
+
 import org.hamcrest.Matchers;
 import org.junit.Assume;
 import org.junit.Test;
@@ -101,6 +103,18 @@ public class TransportadoraResourceTest extends BaseTest {
 						.assertThat().statusCode(200)
 						.body("email", Matchers.is("kariny2020@gmail.com"))
 					;				
+	}
+	
+	@Test
+	public void deveObterUmaListaDeTransportadoras() throws Exception {
+		
+		RestAssured.given()
+					.when()
+						.get("/transportadoras")
+					.then()
+						.log().body()
+						.assertThat().statusCode(200)
+					;
 	}
 	
 
