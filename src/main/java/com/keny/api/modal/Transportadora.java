@@ -50,7 +50,7 @@ public class Transportadora implements Serializable {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private UfEnum uf;
-	private Integer cep;
+	private String cep;
 
 	public Integer getId() {
 		return id;
@@ -148,11 +148,11 @@ public class Transportadora implements Serializable {
 		this.uf = uf;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
