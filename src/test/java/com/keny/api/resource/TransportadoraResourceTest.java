@@ -1,5 +1,6 @@
 package com.keny.api.resource;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -13,6 +14,7 @@ import io.restassured.http.ContentType;
 
 public class TransportadoraResourceTest extends BaseTest {
 	
+	@Ignore
 	@Test
 	public void devSaveTransportadora() throws Exception {
 
@@ -45,8 +47,19 @@ public class TransportadoraResourceTest extends BaseTest {
 						.assertThat().statusCode(201)
 						.log().body()
 					;									
-
 	}
-
+	
+	@Test
+	public void devConsultarTransportadora() throws Exception{
+		
+		RestAssured.given()
+					.when()
+						.get("/transportadoras/1")
+					.then()
+						.assertThat().statusCode(200)
+						.log().body()
+					;		
+		
+	}
 
 }
