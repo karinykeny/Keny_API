@@ -117,5 +117,16 @@ public class TransportadoraResourceTest extends BaseTest {
 					;
 	}
 	
+	@Test
+	public void deveExcluirTransportadora() throws Exception {
+		
+		RestAssured.given()
+					.with()
+						.delete("transportadoras/2")
+					.then()
+						.assertThat().statusCode(204)
+					;		
+	}
+	
 
 }
