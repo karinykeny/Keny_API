@@ -20,9 +20,9 @@ public class TransportadoraResourceTest extends BaseTest {
 	@Test
 	public void deveSaveTransportadora() throws Exception {
 		
-		Response response = RestAssured.request(Method.GET, "/transportadoras/1");
+		Response response = RestAssured.request(Method.GET, "/transportadoras/2");
 
-		Assume.assumeTrue("Tabela não está vazia", response.statusCode() == 404);
+		Assume.assumeTrue("Existe duas ou mais transportadoras", response.statusCode() == 404);
 
 		Transportadora transportadora = new Transportadora();
 
@@ -64,7 +64,7 @@ public class TransportadoraResourceTest extends BaseTest {
 					.then()
 						.log().body()
 						.assertThat().statusCode(200)
-						.body("cnpj", Matchers.is("33200056000149"))
+						.body("cnpj", Matchers.is("61189288000189"))
 					;		
 		
 	}
