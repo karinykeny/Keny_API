@@ -1,7 +1,7 @@
 package com.keny.api.resource;
 
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
+import org.junit.Assume;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -12,12 +12,17 @@ import com.keny.api.modal.enums.UfEnum;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
 
 public class TransportadoraResourceTest extends BaseTest {
 	
-	@Ignore
 	@Test
 	public void devSaveTransportadora() throws Exception {
+		
+		Response response = RestAssured.request(Method.GET, "/transportadoras/1");
+
+		Assume.assumeTrue("Tabela não está vazia", response.statusCode() == 404);
 
 		Transportadora transportadora = new Transportadora();
 
