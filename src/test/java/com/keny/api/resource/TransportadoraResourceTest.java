@@ -63,5 +63,18 @@ public class TransportadoraResourceTest extends BaseTest {
 					;		
 		
 	}
+	
+	@Test
+	public void devConsultarTransportadorFail() throws Exception{
+		
+		RestAssured.given()
+					.when()
+						.get("/transportadoras/5")
+					.then()
+						.log().body()
+						.assertThat().statusCode(404)
+					;		
+		
+	}
 
 }
