@@ -1,5 +1,7 @@
 package com.keny.api.resource;
 
+import static org.junit.Assert.*;
+
 import org.hamcrest.Matchers;
 import org.junit.Assume;
 import org.junit.Test;
@@ -18,7 +20,7 @@ import io.restassured.response.Response;
 public class TransportadoraResourceTest extends BaseTest {
 	
 	@Test
-	public void devSaveTransportadora() throws Exception {
+	public void deveSaveTransportadora() throws Exception {
 		
 		Response response = RestAssured.request(Method.GET, "/transportadoras/1");
 
@@ -56,7 +58,7 @@ public class TransportadoraResourceTest extends BaseTest {
 	}
 	
 	@Test
-	public void devConsultarTransportadora() throws Exception{
+	public void deveConsultarTransportadora() throws Exception{
 		
 		RestAssured.given()
 					.when()
@@ -70,7 +72,7 @@ public class TransportadoraResourceTest extends BaseTest {
 	}
 	
 	@Test
-	public void devConsultarTransportadorFail() throws Exception{
+	public void deveConsultarTransportadorFail() throws Exception{
 		
 		RestAssured.given()
 					.when()
@@ -78,8 +80,29 @@ public class TransportadoraResourceTest extends BaseTest {
 					.then()
 						.log().body()
 						.assertThat().statusCode(404)
-					;		
-		
+					;				
 	}
+	
+	@Test
+	public void deveAlterarTransportadora() throws Exception {
+		
+		Response response = RestAssured.request(Method.GET, "/transportadoras/1");
+		Gson gson = new Gson();
+		Transportadora transportadora = gson.fromJson(response.asString(), Transportadora.class);
+		transportadora.setEmail("kariny2020@gmail.com");
+		
+		String json = gson.toJson(transportadora);
+		
+		RestAssured.given()
+						.contentType(ContentType.JSON)
+						.body(json)
+					.when()
+						.put("/transportadoras/1")
+					.then()
+						.log().body()
+						.assertThat().statusCode(201)
+					;				
+	}
+	
 
 }
