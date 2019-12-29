@@ -1,5 +1,7 @@
 package com.keny.api.service;
 
+import java.util.List;
+
 import com.keny.api.modal.Transportadora;
 
 public interface TransportadoraService {
@@ -9,5 +11,7 @@ public interface TransportadoraService {
 	Transportadora findById(Integer id);
 
 	Transportadora updade(Transportadora transportadora);
+
+	List<Transportadora> findAll();
 
 }

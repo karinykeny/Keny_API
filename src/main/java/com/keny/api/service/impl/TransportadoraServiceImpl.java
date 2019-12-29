@@ -1,5 +1,6 @@
 package com.keny.api.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class TransportadoraServiceImpl implements TransportadoraService {
 		Transportadora transp = repository.findById(transportadora.getId()).get();
 		BeanUtils.copyProperties(transportadora, transp, "id");
 		return repository.save(transp);
+	}
+
+	@Override
+	public List<Transportadora> findAll() {
+		return repository.findAll();
 	}
 
 }

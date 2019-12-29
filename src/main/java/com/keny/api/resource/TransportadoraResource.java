@@ -1,5 +1,7 @@
 package com.keny.api.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,11 @@ public class TransportadoraResource {
 	@PutMapping
 	public ResponseEntity<Transportadora> updateByTransportadora(@RequestBody Transportadora transportadora){
 		return ResponseEntity.ok(service.updade(transportadora));
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Transportadora>> list(){
+		return ResponseEntity.ok(service.findAll());
 	}
 
 }
