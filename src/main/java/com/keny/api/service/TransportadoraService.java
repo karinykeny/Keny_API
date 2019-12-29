@@ -8,4 +8,6 @@ public interface TransportadoraService {
 
 	Transportadora findById(Integer id);
 
+	Transportadora updade(Transportadora transportadora);
+
 }

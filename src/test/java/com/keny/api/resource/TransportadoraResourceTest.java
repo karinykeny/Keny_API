@@ -1,7 +1,5 @@
 package com.keny.api.resource;
 
-import static org.junit.Assert.*;
-
 import org.hamcrest.Matchers;
 import org.junit.Assume;
 import org.junit.Test;
@@ -97,10 +95,11 @@ public class TransportadoraResourceTest extends BaseTest {
 						.contentType(ContentType.JSON)
 						.body(json)
 					.when()
-						.put("/transportadoras/1")
+						.put("/transportadoras")
 					.then()
 						.log().body()
-						.assertThat().statusCode(201)
+						.assertThat().statusCode(200)
+						.body("email", Matchers.is("kariny2020@gmail.com"))
 					;				
 	}
 	

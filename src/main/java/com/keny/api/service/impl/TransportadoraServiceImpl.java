@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.BeanUtils;
 
 import com.keny.api.modal.Transportadora;
 import com.keny.api.repository.TransortadoraRepository;
@@ -28,6 +29,13 @@ public class TransportadoraServiceImpl implements TransportadoraService {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return transportadora.get();
+	}
+
+	@Override
+	public Transportadora updade(Transportadora transportadora) {
+		Transportadora transp = repository.findById(transportadora.getId()).get();
+		BeanUtils.copyProperties(transportadora, transp, "id");
+		return repository.save(transp);
 	}
 
 }
