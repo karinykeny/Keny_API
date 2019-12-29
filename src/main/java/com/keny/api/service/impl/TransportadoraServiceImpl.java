@@ -14,7 +14,7 @@ import com.keny.api.service.TransportadoraService;
 
 @Service
 public class TransportadoraServiceImpl implements TransportadoraService {
-	
+
 	@Autowired
 	private TransortadoraRepository repository;
 
@@ -26,7 +26,7 @@ public class TransportadoraServiceImpl implements TransportadoraService {
 	@Override
 	public Transportadora findById(Integer id) {
 		Optional<Transportadora> transportadora = repository.findById(id);
-		if(!transportadora.isPresent()) {
+		if (!transportadora.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return transportadora.get();
@@ -42,6 +42,15 @@ public class TransportadoraServiceImpl implements TransportadoraService {
 	@Override
 	public List<Transportadora> findAll() {
 		return repository.findAll();
+	}
+
+	@Override
+	public void detete(Integer id) {
+		Optional<Transportadora> transportadora = repository.findById(id);
+		if (transportadora.isPresent()) {
+			repository.delete(transportadora.get());
+		}
+
 	}
 
 }
