@@ -20,9 +20,9 @@ public class TransportadoraResourceTest extends BaseTest {
 	@Test
 	public void deveSaveTransportadora() throws Exception {
 		
-		Response response = RestAssured.request(Method.GET, "/transportadoras/2");
+		Response response = RestAssured.request(Method.GET, "/transportadoras/6");
 
-		Assume.assumeTrue("Existe duas ou mais transportadoras", response.statusCode() == 404);
+		Assume.assumeTrue("Obteve status code diferente 404", response.statusCode() == 404);
 
 		Transportadora transportadora = new Transportadora();
 
@@ -74,7 +74,7 @@ public class TransportadoraResourceTest extends BaseTest {
 		
 		RestAssured.given()
 					.when()
-						.get("/transportadoras/5")
+						.get("/transportadoras/7")
 					.then()
 						.log().body()
 						.assertThat().statusCode(404)
@@ -132,11 +132,11 @@ public class TransportadoraResourceTest extends BaseTest {
 		RestAssured.given()
 					.log().body()
 					.with()
-						.get("transportadoras?filter&nome=Teste")
+						.get("transportadoras?filter&nome=Teste1")
 					.then()
 						.log().body()
 						.assertThat().statusCode(200)
-						.body("nome", Matchers.hasItem("Teste"))
+						.body("nome", Matchers.hasItem("Teste1"))
 					;		
 	}
 	
@@ -151,6 +151,20 @@ public class TransportadoraResourceTest extends BaseTest {
 						.log().body()
 						.assertThat().statusCode(200)
 						.body("uf", Matchers.hasItem("PE"))
+					;		
+	}
+	
+	@Test
+	public void deveFiltrarTransportadoraPelaCidade() throws Exception {
+		
+		RestAssured.given()
+					.log().body()
+					.with()
+						.get("transportadoras?filter&cidade=Teste1")
+					.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.body("cidade", Matchers.hasItem("teste1"))
 					;		
 	}
 	
