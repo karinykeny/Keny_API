@@ -50,5 +50,10 @@ public class TransportadoraResource {
 	public void deleteTransportadora(@PathVariable Integer id){
 		service.detete(id);
 	}
+	
+	@GetMapping(params = "filter")
+	public ResponseEntity<List<Transportadora>> filter(Transportadora transportadora){		
+		return ResponseEntity.ok(service.findAll(transportadora));
+	}
 
 }

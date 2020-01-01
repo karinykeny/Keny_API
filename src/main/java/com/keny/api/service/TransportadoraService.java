@@ -15,5 +15,7 @@ public interface TransportadoraService {
 	List<Transportadora> findAll();
 
 	void detete(Integer id);
+	
+	List<Transportadora> findAll(Transportadora transportadora);
 
 }

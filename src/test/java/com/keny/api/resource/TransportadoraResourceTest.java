@@ -1,7 +1,5 @@
 package com.keny.api.resource;
 
-import static org.junit.Assert.*;
-
 import org.hamcrest.Matchers;
 import org.junit.Assume;
 import org.junit.Test;
@@ -125,6 +123,20 @@ public class TransportadoraResourceTest extends BaseTest {
 						.delete("transportadoras/2")
 					.then()
 						.assertThat().statusCode(204)
+					;		
+	}
+	
+	@Test
+	public void deveFiltrarTransportadoraPeloNome() throws Exception {
+		
+		RestAssured.given()
+					.log().body()
+					.with()
+						.get("transportadoras?filter&nome=Teste")
+					.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.body("nome", Matchers.hasItem("Teste"))
 					;		
 	}
 	

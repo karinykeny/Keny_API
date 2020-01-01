@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.BeanUtils;
 
@@ -51,6 +52,11 @@ public class TransportadoraServiceImpl implements TransportadoraService {
 			repository.delete(transportadora.get());
 		}
 
+	}
+
+	@Override
+	public List<Transportadora> findAll(Transportadora transportadora) {		
+		return repository.findAll(Example.of(transportadora));
 	}
 
 }
