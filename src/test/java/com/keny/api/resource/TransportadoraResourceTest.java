@@ -140,5 +140,19 @@ public class TransportadoraResourceTest extends BaseTest {
 					;		
 	}
 	
+	@Test
+	public void deveFiltrarTransportadoraPeloUf() throws Exception {
+		
+		RestAssured.given()
+					.log().body()
+					.with()
+						.get("transportadoras?filter&uf=PE")
+					.then()
+						.log().body()
+						.assertThat().statusCode(200)
+						.body("uf", Matchers.hasItem("PE"))
+					;		
+	}
+	
 
 }
