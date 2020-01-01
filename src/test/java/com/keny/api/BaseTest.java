@@ -26,6 +26,8 @@ public abstract class BaseTest {
 				.log(LogDetail.METHOD)
 				.log(LogDetail.URI)
 				.build();
+		
+		requestSpecification.auth().basic("kenyapi", "@keny@123");
 
 		RestAssured.requestSpecification = requestSpecification;
 	}
