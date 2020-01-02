@@ -26,19 +26,19 @@ public class TransportadoraResourceTest extends BaseTest {
 
 		Transportadora transportadora = new Transportadora();
 
-		transportadora.setCnpj("33200056000149");
+		transportadora.setCnpj("59291534000167");
 		transportadora.setBairro("Rio Doce");
-		transportadora.setEmail("karinykeny@gmail.com");
-		transportadora.setNome("Kariny Keny");
-		transportadora.setEmpresa("Empresa Kariny");
-		transportadora.setTelefone("81996912471");
+		transportadora.setEmail("testeteste@gmail.com");
+		transportadora.setNome("Teste6");
+		transportadora.setEmpresa("Empresa Test6");
+		transportadora.setTelefone("81996999999");
 		transportadora.setModal(ModalEnum.AEREO);
-		transportadora.setRua("Rua da Laareira");
-		transportadora.setNumero(66);
-		transportadora.setBairro("Rio Doce");
-		transportadora.setCidade("Olinda");
+		transportadora.setRua("Rua teste6");
+		transportadora.setNumero(7);
+		transportadora.setBairro("teste6");
+		transportadora.setCidade("teste6");
 		transportadora.setUf(UfEnum.PE);
-		transportadora.setCep("53080310");
+		transportadora.setCep("50000000");
 
 		Gson gson = new Gson();
 		String json = gson.toJson(transportadora);
@@ -168,5 +168,38 @@ public class TransportadoraResourceTest extends BaseTest {
 					;		
 	}
 	
+	@Test
+	public void deveValidarCnpjExitenteNaBaseDeDados() throws Exception {
+
+		Transportadora transportadora = new Transportadora();
+
+		transportadora.setCnpj("61189288000189");
+		transportadora.setBairro("Rio Doce");
+		transportadora.setEmail("testeteste7@gmail.com");
+		transportadora.setNome("Teste7");
+		transportadora.setEmpresa("Empresa Test7");
+		transportadora.setTelefone("81996999999");
+		transportadora.setModal(ModalEnum.AEREO);
+		transportadora.setRua("Rua teste7");
+		transportadora.setNumero(7);
+		transportadora.setBairro("teste7");
+		transportadora.setCidade("teste7");
+		transportadora.setUf(UfEnum.PE);
+		transportadora.setCep("50000000");
+
+		Gson gson = new Gson();
+		String json = gson.toJson(transportadora);
+		
+		RestAssured.given()
+						.contentType(ContentType.JSON)
+						.body(json)
+						.log().body()
+					.when()
+						.post("/transportadoras")
+					.then()
+						.assertThat().statusCode(406)
+						.log().body()
+					;									
+	}
 
 }
