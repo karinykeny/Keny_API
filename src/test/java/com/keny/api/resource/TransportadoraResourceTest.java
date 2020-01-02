@@ -201,5 +201,38 @@ public class TransportadoraResourceTest extends BaseTest {
 						.log().body()
 					;									
 	}
+	
+	@Test
+	public void deveValidarTransportadoraCamposObrigatorios() throws Exception {
+
+		Transportadora transportadora = new Transportadora();
+
+		transportadora.setCnpj("19940591000105");
+		transportadora.setBairro("teste8");
+		transportadora.setEmail("testeteste8@gmail.com");
+		transportadora.setEmpresa("Empresa Test8");
+		transportadora.setTelefone("81996999999");
+		transportadora.setModal(ModalEnum.AEREO);
+		transportadora.setRua("Rua teste8");
+		transportadora.setNumero(7);
+		transportadora.setBairro("teste8");
+		transportadora.setCidade("teste8");
+		transportadora.setUf(UfEnum.PE);
+		transportadora.setCep("50000000");
+
+		Gson gson = new Gson();
+		String json = gson.toJson(transportadora);
+		
+		RestAssured.given()
+						.contentType(ContentType.JSON)
+						.body(json)
+						.log().body()
+					.when()
+						.post("/transportadoras")
+					.then()
+						.assertThat().statusCode(406)
+						.log().body()
+					;									
+	}
 
 }
