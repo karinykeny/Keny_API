@@ -7,29 +7,29 @@
 > Headers: Content-Type: application/json
 > URI: http://localhost:8080/transportadoras
 > Method: POST
-> Body: 
+> Body:
 
 ```json
 {
-    "id": 2,
-    "cnpj": "59291534000167",
-    "email": "karinykeny@gmail.com",
-    "nome": "Kariny Keny",
-    "empresa": "Empresa Kariny",
-    "telefone": "81996912471",
-    "modal": "AEREO",
-    "rua": "Rua da Laareira",
-    "numero": 66,
-    "bairro": "Rio Doce",
-    "cidade": "Olinda",
-    "uf": "PE",
-    "cep": "53080310"
+  "id": 1,
+  "cnpj": "61189288000189",
+  "email": "testeteste@gmail.com",
+  "nome": "Teste1",
+  "empresa": "Empresa Test1",
+  "telefone": "81996999999",
+  "modal": "AEREO",
+  "rua": "Rua teste1",
+  "numero": 1,
+  "bairro": "teste1",
+  "cidade": "teste1",
+  "uf": "PE",
+  "cep": "50000000"
 }
 ```
+
 - Response:
 
 > Status Code: 201
-
 
 ##### Obter uma transportadora
 
@@ -45,29 +45,29 @@
 > Headers: Content-Type: application/json
 > URI: http://localhost:8080/transportadoras
 > Method: PUT
-> Body: 
+> Body:
 
 ```json
 {
-    "id": 2,
-    "cnpj": "59291534000167",
-    "email": "keny2050@gmail.com",
-    "nome": "Kariny Keny",
-    "empresa": "Empresa Kariny",
-    "telefone": "81996912471",
-    "modal": "AEREO",
-    "rua": "Rua da Laareira",
-    "numero": 66,
-    "bairro": "Rio Doce",
-    "cidade": "Olinda",
-    "uf": "PE",
-    "cep": "53080310"
+  "id": 1,
+  "cnpj": "61189288000189",
+  "email": "testeteste@gmail.com",
+  "nome": "Teste1",
+  "empresa": "Empresa Test1",
+  "telefone": "81996999999",
+  "modal": "AEREO",
+  "rua": "Rua teste1",
+  "numero": 1,
+  "bairro": "teste1",
+  "cidade": "teste1",
+  "uf": "PE",
+  "cep": "50000000"
 }
 ```
+
 - Response:
 
 > Status Code: 200
-
 
 ##### Excluir uma transportadora
 
@@ -81,6 +81,15 @@
 ##### Listar transportadoras
 
 > URI: http://localhost:8080/transportadoras
+> Method: GET
+
+- Response:
+
+> Status Code: 200
+
+##### Filtra transportadoras por multiplos parâmetros
+
+> URI: http://localhost:8080/transportadoras?filter&nome=teste5&uf=SP
 > Method: GET
 
 - Response:
