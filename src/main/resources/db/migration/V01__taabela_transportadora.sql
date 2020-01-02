@@ -1,6 +1,6 @@
 CREATE TABLE transportadora (
 	id int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	cnpj varchar(14) NOT NULL,
+	cnpj varchar(14) NOT NULL UNIQUE,
 	email varchar(100),
 	nome varchar(100) NOT NULL,
 	empresa varchar(100) NOT NULL,

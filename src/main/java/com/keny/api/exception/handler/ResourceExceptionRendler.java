@@ -2,6 +2,7 @@ package com.keny.api.exception.handler;
 
 import javax.validation.ConstraintViolationException;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,4 +36,12 @@ public class ResourceExceptionRendler extends ResponseEntityExceptionHandler {
 		String userMessage = "Tipo de mídia HTTP não suportada" ;
 		return handleExceptionInternal(ex, userMessage, new HttpHeaders(), HttpStatus.UNSUPPORTED_MEDIA_TYPE, request);
 	}
+	
+	@ExceptionHandler({ DataIntegrityViolationException.class })
+	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex,
+			WebRequest request) {
+		String userMessage = "Entrada de dados em duplicidade";
+		return handleExceptionInternal(ex, userMessage, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
+	}
+	
 }
