@@ -25,21 +25,21 @@ public class Transportadora implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull(message = "Preenchimento obrigatorio")
+	@NotNull
 	@CNPJ
 	private String cnpj;
 	
-	@Email(message = "E-mail inválido")
+	@Email
 	private String email;
 	
-	@NotNull(message = "Preenchimento obrigatorio")
+	@NotNull
 	private String nome;
 	
-	@NotNull(message = "Preenchimento obrigatorio")
+	@NotNull
 	private String empresa;
 	private String telefone;
 	
-	@NotNull(message = "Preenchimento obrigatorio")
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private ModalEnum modal;
 	private String rua;

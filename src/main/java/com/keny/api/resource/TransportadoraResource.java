@@ -2,6 +2,8 @@ package com.keny.api.resource;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class TransportadoraResource {
 	private TransportadoraService service;
 	
 	@PostMapping
-	public ResponseEntity<Transportadora> save(@RequestBody Transportadora transportadora){
+	public ResponseEntity<Transportadora> save(@Valid @RequestBody Transportadora transportadora){
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.seve(transportadora));		
 	}
 	
