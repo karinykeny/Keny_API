@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.ConstraintViolationException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -23,8 +24,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @RestControllerAdvice
 public class ResourceExceptionRendler extends ResponseEntityExceptionHandler {
-	
+
+	@Autowired
 	private MessageSource messageSource;
+	@Autowired
+	private ErrorDetails errorDetails;
 
 	@ExceptionHandler({ EmptyResultDataAccessException.class })
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,
@@ -43,26 +47,26 @@ public class ResourceExceptionRendler extends ResponseEntityExceptionHandler {
 	@Override
 	public ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		String userMessage = "Tipo de mídia HTTP não suportada" ;
+		String userMessage = "Tipo de mídia HTTP não suportada";
 		return handleExceptionInternal(ex, userMessage, new HttpHeaders(), HttpStatus.UNSUPPORTED_MEDIA_TYPE, request);
 	}
-	
+
 	@ExceptionHandler({ DataIntegrityViolationException.class })
 	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex,
 			WebRequest request) {
 		String userMessage = "Entrada de dados em duplicidade";
 		return handleExceptionInternal(ex, userMessage, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
 	}
-	
+
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		messageSource = new ReloadableResourceBundleMessageSource();
-		List<String> erros = new ArrayList<String>();		
+		List<ErrorDetails> erros = new ArrayList<ErrorDetails>();
 		for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
-			erros.add(messageSource.getMessage(fieldError, LocaleContextHolder.getLocale()));
+			errorDetails = new ErrorDetails(status.value(),fieldError.getField() + ": " + messageSource.getMessage(fieldError, LocaleContextHolder.getLocale()),fieldError.toString());
+			erros.add(errorDetails);
 		}
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE, request);
 	}
-	
+
 }
