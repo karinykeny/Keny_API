@@ -1,4 +1,4 @@
-# API Transportadora
+# API Transportadora [![Build Status](https://travis-ci.com/karinykeny/Transportadora_API.svg?branch=master)(https://travis-ci.com/karinykeny/Transportadora_API)
 
 > Projeto API transportadora para Praxio
 
