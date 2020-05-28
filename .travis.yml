@@ -4,6 +4,8 @@ jdk:
   - openjdk8
 services:
   - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE apikenydbtest;'
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
