@@ -5,5 +5,4 @@ jdk:
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - docker run -it --rm -v "$PWD":/usr/src/flyway -w /usr/src/flyway maven:3-jdk-$JDK_VERSION mvn install -e
-  - mvn test -B
+  - mvn clean
