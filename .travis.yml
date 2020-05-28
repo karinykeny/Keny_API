@@ -2,18 +2,7 @@ language: java
 sudo: true
 jdk:
   - openjdk8
-cache:
-  diretórios:
-  - '$ HOME / .m2'
 services:
   - mysql
-before_install:
-  - mysql -e 'CREATE DATABASE apikenydbtest;'
-  - curl -o $HOME/.m2/settings.xml
-  https://github.com/karinykeny/Transportadora_API/blob/master/pom.xml
-- mvn dependency:go-offline
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-script:
-  - mvn clean install site
-  - mvn test
